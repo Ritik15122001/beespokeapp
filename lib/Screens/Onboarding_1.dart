@@ -12,11 +12,28 @@ class onboarding_1 extends StatefulWidget {
 
 class _onboarding_1State extends State<onboarding_1> {
   @override
-  void initState(){
+  void initState() {
     super.initState();
     Timer(
         Duration(seconds: 3),
-            ()=>Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context)=>onboarding2()))
+            () => Navigator.of(context).pushReplacement(_fadeInPageRoute())
+    );
+  }
+
+  PageRouteBuilder _fadeInPageRoute() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => onboarding2(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = 0.0;
+        const end = 1.0;
+        var tween = Tween(begin: begin, end: end);
+        var opacityAnimation = animation.drive(tween);
+
+        return FadeTransition(
+          opacity: opacityAnimation,
+          child: child,
+        );
+      },
     );
   }
   Widget build(BuildContext context) {
@@ -135,7 +152,7 @@ class _onboarding_1State extends State<onboarding_1> {
                 Padding(
                   padding:  EdgeInsets.only(top:height*0.02,left: width*0.2),
                   child: InkWell(
-                    onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>onboarding2()));},
+                    onTap: () => Navigator.of(context).pushReplacement(_fadeInPageRoute()),
                     child: Container(
                       width: width*0.6,
                       height: height*0.069,

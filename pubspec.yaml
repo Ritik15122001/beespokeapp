@@ -67,6 +67,8 @@ flutter:
     - Images/data1.json
     - Images/data3.json
     - Images/data4.json
+    - Images/apple.png
+    - Images/google.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

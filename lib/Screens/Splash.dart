@@ -11,11 +11,28 @@ class splash_screen extends StatefulWidget {
 
 class _splash_screenState extends State<splash_screen> {
   @override
-  void initState(){
+  void initState() {
     super.initState();
     Timer(
-      Duration(seconds: 3),
-        ()=>Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context)=>onboarding_1()))
+        Duration(seconds: 3),
+            () => Navigator.of(context).pushReplacement(_fadeInPageRoute())
+    );
+  }
+
+  PageRouteBuilder _fadeInPageRoute() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => onboarding_1(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = 0.0;
+        const end = 1.0;
+        var tween = Tween(begin: begin, end: end);
+        var opacityAnimation = animation.drive(tween);
+
+        return FadeTransition(
+          opacity: opacityAnimation,
+          child: child,
+        );
+      },
     );
   }
   Widget build(BuildContext context) {

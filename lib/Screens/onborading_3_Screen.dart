@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:beespokeapp/Screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 class onboarding3 extends StatefulWidget {
@@ -9,6 +12,30 @@ class onboarding3 extends StatefulWidget {
 
 class _onboarding3State extends State<onboarding3> {
   @override
+  void initState() {
+    super.initState();
+    Timer(
+        Duration(seconds: 3),
+            () => Navigator.of(context).pushReplacement(_fadeInPageRoute())
+    );
+  }
+
+  PageRouteBuilder _fadeInPageRoute() {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => LoginScreen(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = 0.0;
+        const end = 1.0;
+        var tween = Tween(begin: begin, end: end);
+        var opacityAnimation = animation.drive(tween);
+
+        return FadeTransition(
+          opacity: opacityAnimation,
+          child: child,
+        );
+      },
+    );
+  }
   Widget build(BuildContext context) {
     final width =MediaQuery.of(context).size.width;
     final height =MediaQuery.of(context).size.height;
@@ -125,7 +152,10 @@ class _onboarding3State extends State<onboarding3> {
                 Padding(
                   padding:  EdgeInsets.only(top:height*0.02,left: width*0.2),
                   child: InkWell(
-                    onTap: (){print("Navigate");},
+                    onTap:  () {
+                         Navigator.of(context).pushReplacement(_customPageRouteBuilder(LoginScreen()));
+                                },
+
                     child: Container(
                       width: width*0.6,
                       height: height*0.069,
@@ -161,4 +191,22 @@ class _onboarding3State extends State<onboarding3> {
 
     );
   }
+}
+PageRouteBuilder _customPageRouteBuilder(Widget destination) {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => destination,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(1.0, 0.0); // Initial position of the new screen
+      const end = Offset.zero; // Final position of the new screen
+      const curve = Curves.easeInOut; // Animation curve
+
+      var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+      var offsetAnimation = animation.drive(tween);
+
+      return SlideTransition(
+        position: offsetAnimation,
+        child: child,
+      );
+    },
+  );
 }
