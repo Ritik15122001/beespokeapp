@@ -3,6 +3,7 @@ import 'package:beespokeapp/Screens/login.dart';
 import 'package:flutter/material.dart';
 import 'Screens/Onboarding_1.dart';
 import 'Screens/onboarding_2_screen.dart';
+import 'Screens/product_feed_Screen.dart';
 void main() {
   runApp(const MyApp());
 }

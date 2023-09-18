@@ -4,7 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:beespokeapp/Component/Button.dart';
 import 'package:beespokeapp/Component/SquareTiles.dart';
 import 'package:beespokeapp/Component/TextField.dart';
-
+import 'package:beespokeapp/Screens/product_feed_Screen.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key});
 
@@ -13,7 +13,6 @@ class LoginScreen extends StatelessWidget {
   final passwordController = TextEditingController();
 
   // sign user in method
-  void signUserIn() {}
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +110,7 @@ class LoginScreen extends StatelessWidget {
 
                 // sign in button
                 MyButton(
-                  onTap: signUserIn,
+                  onTap: () => Navigator.of(context).pushReplacement(_fadeInPageRoute2()),
                 ),
 
                 const SizedBox(height: 50),
@@ -167,7 +166,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     const SizedBox(width: 4),
                     GestureDetector(
-                      onTap:() => Navigator.of(context).pushReplacement(_fadeInPageRoute()),
+                      onTap:() => Navigator.of(context).pushReplacement(_fadeInPageRoute2()),
                       child: Text(
                         'Register now',
                         style: TextStyle(
@@ -189,6 +188,22 @@ class LoginScreen extends StatelessWidget {
 PageRouteBuilder _fadeInPageRoute() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) =>SignUp_Screen(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = 0.0;
+      const end = 1.0;
+      var tween = Tween(begin: begin, end: end);
+      var opacityAnimation = animation.drive(tween);
+
+      return FadeTransition(
+        opacity: opacityAnimation,
+        child: child,
+      );
+    },
+  );
+}
+PageRouteBuilder _fadeInPageRoute2() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) =>ProductFeed(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = 0.0;
       const end = 1.0;
