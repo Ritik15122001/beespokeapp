@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:beespokeapp/Screens/Onboarding_1.dart';
 import 'package:flutter/material.dart';
 class splash_screen extends StatefulWidget {

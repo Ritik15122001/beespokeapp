@@ -1,10 +1,9 @@
 import 'package:beespokeapp/Screens/Splash.dart';
-import 'package:beespokeapp/Screens/login.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'Screens/Onboarding_1.dart';
-import 'Screens/onboarding_2_screen.dart';
-import 'Screens/product_feed_Screen.dart';
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 

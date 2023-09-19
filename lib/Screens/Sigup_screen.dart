@@ -1,20 +1,23 @@
 import 'package:beespokeapp/Component/SignUp_Btn.dart';
+import 'package:beespokeapp/Component/name.dart';
 import 'package:beespokeapp/Screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:beespokeapp/Component/Button.dart';
 import 'package:beespokeapp/Component/SquareTiles.dart';
 import 'package:beespokeapp/Component/TextField.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_app_installations/firebase_app_installations.dart';
 class SignUp_Screen extends StatelessWidget {
   SignUp_Screen({Key? key});
 
   // text editing controllers
   final usernameController = TextEditingController();
+  final nameController = TextEditingController();
   final passwordController = TextEditingController();
 
   // sign user in method
-  void signUserIn() {}
+
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +59,7 @@ class SignUp_Screen extends StatelessWidget {
 
                 const SizedBox(height: 25),
                 MyTextField(
-                  controller: usernameController,
+                  controller: nameController,
                   hintText: 'Name',
                   obscureText: false,
                 ),
@@ -87,8 +90,27 @@ class SignUp_Screen extends StatelessWidget {
                 const SizedBox(height: 25),
 
                 // sign in button
-               SignUp_btn(onTap: signUserIn),
-
+              GestureDetector(
+                onTap: () => Navigator.of(context).pushReplacement(_fadeInPageRoute()),
+                child: Container(
+                  padding: const EdgeInsets.all(25),
+                  margin: const EdgeInsets.symmetric(horizontal: 25),
+                  decoration: BoxDecoration(
+                    color: Colors.pinkAccent,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      "Sign Up",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
                 const SizedBox(height: 50),
 
                 // or continue with
@@ -177,3 +199,4 @@ PageRouteBuilder _fadeInPageRoute() {
     },
   );
 }
+

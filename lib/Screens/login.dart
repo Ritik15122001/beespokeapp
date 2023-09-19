@@ -1,10 +1,9 @@
 import 'package:beespokeapp/Screens/Sigup_screen.dart';
+import 'package:beespokeapp/Screens/product_feed_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:beespokeapp/Component/Button.dart';
-import 'package:beespokeapp/Component/SquareTiles.dart';
 import 'package:beespokeapp/Component/TextField.dart';
-import 'package:beespokeapp/Screens/product_feed_Screen.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key});
 
@@ -166,7 +165,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     const SizedBox(width: 4),
                     GestureDetector(
-                      onTap:() => Navigator.of(context).pushReplacement(_fadeInPageRoute2()),
+                      onTap:() => Navigator.of(context).pushReplacement(_fadeInPageRoute()),
                       child: Text(
                         'Register now',
                         style: TextStyle(

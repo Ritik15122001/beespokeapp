@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SignUp_btn extends StatelessWidget {
-  final Function()? onTap;
+  final Function() ? onTap;
 
-  const SignUp_btn({super.key, required this.onTap});
+  const SignUp_btn(createUserWithEmailAndPassword, {super.key, this.onTap});
 
   @override
   Widget build(BuildContext context) {
